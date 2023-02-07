@@ -178,3 +178,26 @@ export class Stack {
         }
     }
 }
+
+export class Deck {
+    /** @type {Card[]} */
+    cards = [];
+
+    constructor() {
+        const stock = Object.values(suits).flatMap(suit => Object.values(faces).map(face => new Card(face, suit, false)));
+        this.cards.push(...stock);
+    }
+
+    shuffle() {
+        const stock = [];
+        while(this.cards.length > 0) {
+            const card = this.cards.splice(Math.random() * this.cards.length | 0, 1);
+            stock.push(card[0]);
+        }
+        this.cards.push(...stock);
+    }
+
+    deal() {
+        return this.cards.pop();
+    }
+}

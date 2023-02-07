@@ -1,3 +1,5 @@
+import { createState, dealDeckToState } from './cardFactory.js';
+import { Deck } from './cards.js';
 import { Player } from './Player.js';
 
 
@@ -20,14 +22,25 @@ export class Game {
             this.newGame();
         }
         this.player.setGameState(this.state);
+        this.player.setValidMoves(this.calcMoves());
     }
 
     newGame() {
-        // TODO: initialize decks
-        console.log('new game');
+        const deck = new Deck();
+        deck.shuffle();
+        deck.shuffle();
+        deck.shuffle();
+        deck.shuffle();
+        deck.shuffle();
+        this.state = createState();
+        dealDeckToState(deck, this.state);
+    }
 
-        // shuffle deck
-        // deal cards to make piles
-        // move remaining deck to the stock
+    calcMoves() {
+        const moves = [];
+
+        
+
+        return moves;
     }
 }
