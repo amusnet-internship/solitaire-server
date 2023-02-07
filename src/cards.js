@@ -147,20 +147,34 @@ export class Stack {
     }
 
     flip() {
-        throw new SyntaxError('Not implemented');
         // /!\ stock flipping must automatically take and place card on waste, since you cannot take from the stock and cannot place on the waste
+        if (this.canFlip()) {
+            this.top.faceUp = true;
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     take(index) {
-        throw new SyntaxError('Not implemented');
-        // /!\ stock flipping must automatically take and place card on waste, since you cannot take from the stock and cannot place on the waste
+        if (this.canTake(index)) {
+            return this.cards.splice(index, this.topIndex);
+        } else {
+            return null;
+        }
     }
 
     place(cards) {
         if (Array.isArray(cards) == false) {
             cards = [cards];
         }
-        throw new SyntaxError('Not implemented');
-        // /!\ stock flipping must automatically take and place card on waste, since you cannot take from the stock and cannot place on the waste
+        if (this.canPlace(cards)) {
+            this.cards.push(...cards);
+
+            return true;
+        } else {
+            return false;
+        }
     }
 }
